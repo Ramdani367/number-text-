@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text and Number Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-image: url(https://i.ibb.co.com/f2GHqMj/Proyek-Baru-30-D578-FE3.png); /* Ganti dengan URL gambar yang kamu inginkan */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-size: 24px; /* Ukuran header sedang */
+            background-color: rgba(0, 0, 0, 0.5); /* Transparansi untuk teks agar terlihat jelas di atas gambar */
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            font-size: 16px; /* Ukuran input sedang */
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        button {
+            font-size: 16px; /* Ukuran tombol sedang */
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            margin-left: 10px;
+        }
+
+        p#result {
+            font-size: 18px; /* Ukuran output sedang */
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+            width: 80%;
+        }
+    </style>
+    <script>
+        function convertTextToNumber() {
+            var input = document.getElementById("textInput").value.toUpperCase();
+            var table = {
+                "A": 5, "B": 4, "C": 3, "D": 2, "E": 1,
+                "F": 6, "G": 17, "H": 16, "I": 15, "J": 14,
+                "K": 13, "L": 18, "M": 8, "N": 7, "O": 12,
+                "P": 11, "Q": 10, "R": 9, "S": 19, "T": 26,
+                "U": 25, "V": 24, "W": 23, "X": 22, "Y": 21, "Z": 20,
+                " ": ""
+            };
+            var result = "";
+            for (var i = 0; i < input.length; i++) {
+                var char = input[i];
+                if (table[char] !== undefined) {
+                    result += table[char] + " ";
+                }
+            }
+            document.getElementById("result1").textContent = "Output= " + result.trim();
+        }
+
+        function convertNumberToText() {
+            var input = document.getElementById("numberInput").value;
+            var table = {
+                "5": "a", "4": "b", "3": "c", "2": "d", "1": "e",
+                "6": "f", "17": "g", "16": "h", "15": "i", "14": "j",
+                "13": "k", "18": "l", "8": "m", "7": "n", "12": "o",
+                "11": "p", "10": "q", "9": "r", "19": "s", "26": "t",
+                "25": "u", "24": "v", "23": "w", "22": "x", "21": "y", "20": "z"
+            };
+
+            var result = "";
+            var numbers = input.match(/(\d{1,2})/g);  // Memisahkan angka menjadi grup 1-2 digit
+            for (var i = 0; i < numbers.length; i++) {
+                var num = numbers[i];
+                if (table[num] !== undefined) {
+                    result += table[num] + " ";
+                }
+            }
+            document.getElementById("result2").textContent = "Output= " + result.trim();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Text and Number Converter</h1>
+
+        <h2>Convert Text to Numbers
+            <button onclick="convertTextToNumber()">text to Numbers</button>
+        </h2>
+        <input type="text" id="textInput" placeholder="Enter text">
+        <p id="result1">Output= </p>
+
+        <h2>Convert Numbers to Text
+            <button onclick="convertNumberToText()">number to Text</button>
+        </h2>
+        <input type="text" id="numberInput" placeholder="Enter numbers">
+        <p id="result2">Output= </p>
+    </div>
+</body>
+</html>
